@@ -1,5 +1,32 @@
 "use strict";
 
+// Social profiles can be added later without changing the page layout.
+const socialContainer = document.querySelector('#social-links');
+const socialPlatforms = [
+  {key: 'facebook', label: 'Facebook', domains: ['facebook.com', 'fb.com']},
+  {key: 'instagram', label: 'Instagram', domains: ['instagram.com']},
+  {key: 'tiktok', label: 'TikTok', domains: ['tiktok.com']},
+];
+socialPlatforms.forEach(platform => {
+  const value = window.ULTRA_RENOVA_SOCIALS?.[platform.key]?.trim();
+  if (!value) return;
+  try {
+    const url = new URL(value);
+    const trustedHost = platform.domains.some(domain => url.hostname === domain || url.hostname.endsWith(`.${domain}`));
+    if (url.protocol !== 'https:' || !trustedHost || url.username || url.password) return;
+    const link = document.createElement('a');
+    link.href = url.href;
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
+    link.textContent = platform.label;
+    link.setAttribute('aria-label', `${platform.label} — Ultra Renova (nouvel onglet)`);
+    socialContainer.append(link);
+    socialContainer.hidden = false;
+  } catch {
+    // Ignore incomplete URLs instead of displaying a broken link.
+  }
+});
+
 const menuToggle = document.querySelector('.menu-toggle');
 const navigation = document.querySelector('#main-nav');
 function closeMenu() {
@@ -24,6 +51,7 @@ document.addEventListener('click', event => {
 matchMedia('(min-width: 681px)').addEventListener('change', event => {
   if (event.matches) closeMenu();
 });
+document.body.classList.add('js-enabled');
 
 // Keep one service expanded at a time; native details also work without JS.
 const services = [...document.querySelectorAll('.service')];
@@ -103,6 +131,7 @@ featuredButton.addEventListener('click', () => {
   selectPhoto(selectedPhoto);
   openDialog(galleryDialog, featuredButton);
 });
+featuredButton.disabled = false;
 registerDialog(galleryDialog, document.querySelector('.lightbox-close'));
 document.querySelector('.lightbox-prev').addEventListener('click', () => selectPhoto(selectedPhoto - 1));
 document.querySelector('.lightbox-next').addEventListener('click', () => selectPhoto(selectedPhoto + 1));
@@ -143,6 +172,7 @@ form.addEventListener('submit', event => {
   openDialog(messageDialog, form.querySelector('[type=submit]'));
 });
 registerDialog(messageDialog, document.querySelector('.message-close'));
+form.hidden = false;
 document.querySelector('#copy-message').addEventListener('click', async () => {
   try {
     if (!navigator.clipboard?.writeText) throw new Error('Clipboard unavailable');
