@@ -12,6 +12,8 @@ One-page company website with the design approved by Walter, updated on 13 Octob
 
 No build step, database, administration panel or paid service is needed to serve this version. All paths are relative, so the site works both at the temporary repository URL and at the root of a future company domain.
 
+The updated review link is https://a-karch.github.io/ultra-renova-demo/?v=20261013. Version parameters on the changed stylesheet and scripts prevent a returning visitor's browser from combining new content with older code. Update these parameters when publishing later code or social-link changes.
+
 The nine project photos show one pergola/barbecue project. Generated house/interior illustrations from Canva are not used as completed company projects.
 
 ## Accepted client changes
