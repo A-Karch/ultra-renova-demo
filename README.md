@@ -8,11 +8,12 @@ One-page company website with the design approved by Walter, updated on 13 Octob
 - `styles.css`: the approved navy, orange and warm white design, including mobile layouts.
 - `app.js`: mobile navigation, service accordions, gallery/lightbox, social profile rendering and email preparation.
 - `site-config.js`: the company's social profile URLs. All three values are empty until Walter supplies the exact URLs.
+- `motion.css` / `motion.js`: optional entrance, scrolling and interaction animations. Core navigation, contacts and the gallery do not depend on these files.
 - `assets/`: the original client logo, optimized real project photos and self-hosted fonts with their licenses.
 
 No build step, database, administration panel or paid service is needed to serve this version. All paths are relative, so the site works both at the temporary repository URL and at the root of a future company domain.
 
-The updated review link is https://a-karch.github.io/ultra-renova-demo/?v=20261013. Version parameters on the changed stylesheet and scripts prevent a returning visitor's browser from combining new content with older code. Update these parameters when publishing later code or social-link changes.
+The updated review link is https://a-karch.github.io/ultra-renova-demo/?v=20261013-motion. Version parameters on the changed stylesheet and scripts prevent a returning visitor's browser from combining new content with older code. Update these parameters when publishing later code or social-link changes.
 
 The nine project photos show one pergola/barbecue project. Generated house/interior illustrations from Canva are not used as completed company projects.
 
@@ -39,6 +40,10 @@ Without JavaScript, the mobile navigation is displayed as ordinary links and the
 Checked in the browser at 390px and 320px: no horizontal page overflow, mobile menu navigation, service expansion, project filtering, enlarged photos and Escape closing. The form rejects empty or whitespace-only required values and preserves accented characters and ampersands in the prepared email. No test emails were sent. A sandboxed page with scripts disabled exposes normal navigation, all photo links and an email contact fallback. JavaScript syntax and local asset/anchor references were also checked.
 
 These checks cover the static site experience. They do not establish email delivery, hosting/domain configuration or validation of company identifiers.
+
+## Motion
+
+Motion is limited to small 4–12px shifts lasting 0.2–0.6 seconds, once-per-section entrance effects, small button-arrow movements and desktop photo hover zoom. Nothing is hidden while waiting for JavaScript or an observer. Scrolling stays native. The visitor's [reduced-motion preference](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion) disables these effects, including when that preference changes while the site is open. Scroll entry is handled by [Intersection Observer](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API), without a continuous scroll loop or external animation library.
 
 ## Adding social links
 

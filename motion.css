@@ -1,0 +1,84 @@
+/* Small, one-time movements suited to a construction company site. */
+@keyframes site-arrive {
+  from { opacity: .7; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes section-arrive {
+  from { opacity: .65; transform: translateY(12px); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes detail-arrive {
+  from { opacity: .65; transform: translateY(4px); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes dialog-arrive {
+  from { opacity: .8; transform: translateY(6px) scale(.99); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .motion-ready .hero-copy {
+    animation: site-arrive .48s cubic-bezier(.2,.65,.3,1) backwards;
+  }
+
+  .motion-ready .hero-visual {
+    animation: site-arrive .6s cubic-bezier(.2,.65,.3,1) .08s backwards;
+  }
+
+  .motion-ready .motion-revealed {
+    animation: section-arrive .48s cubic-bezier(.2,.65,.3,1) backwards;
+  }
+
+  .motion-ready .service[open] .service-content {
+    animation: detail-arrive .22s ease-out;
+  }
+
+  .motion-ready dialog[open] {
+    animation: dialog-arrive .2s ease-out;
+  }
+
+  .button > span, .text-link > span, .nav-contact > span, .back-top > span {
+    transition: transform .18s ease-out;
+  }
+
+  .button:focus-visible > span, .text-link:focus-visible > span, .nav-contact:focus-visible > span {
+    transform: translate(2px,-2px);
+  }
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .button:hover > span, .text-link:hover > span, .nav-contact:hover > span {
+    transform: translate(2px,-2px);
+  }
+
+  .hero-actions .text-link:hover > span, .hero-actions .text-link:focus-visible > span {
+    transform: translateY(3px);
+  }
+
+  .back-top:hover > span {
+    transform: translateY(-3px);
+  }
+
+  .project-main-image, .gallery-thumb {
+    overflow: hidden;
+  }
+
+  .project-main-image > img {
+    transition: transform .4s cubic-bezier(.2,.65,.3,1);
+  }
+
+  .project-main-image:hover > img {
+    transform: scale(1.018);
+  }
+
+  .gallery-thumb img {
+    transition: opacity .2s, transform .3s ease-out;
+  }
+
+  .gallery-thumb:hover img {
+    transform: scale(1.035);
+  }
+}
